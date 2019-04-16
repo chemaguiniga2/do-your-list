@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const app = express();
 const rootRouter = require('./routes/root');
 // Prueba
@@ -9,6 +10,12 @@ const rootRouter = require('./routes/root');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded( {extended: false }));
 app.set('view engine', 'ejs');
+app.use(session({
+    secret: '002dC1',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+}));
 
 app.use(express.json());
 app.use('/', rootRouter); 
