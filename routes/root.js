@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const session = require('express-session');
 const usuarios = {};
-
+const { Usuario, validate } = require('../models/usuario');
 
 function guardarUsuario(password){
     usuario = {
@@ -34,26 +34,20 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     //Procesar login, para guardar datos en sesión se puede usar req.session.propiedad = valor;
-    let {login, password} = req.body;
-    if (usuarios.hasOwnProperty(login)){
-        if (usuarios[login].password === password) {
-            req.session.login = login;
-            return res.redirect('/mi_lista');
-        }
-        else{
-            //return res.sendFile('index.html', {root: path.join(__dirname, './public')});
-            res.render('index', {}) ;
-        }
-    }
-    // Mandar mensaje de que no existe usuario con ese username
-    // Redirigir a /register
-    return res.redirect('/register'); 
+    ///trainer/<%= i.name %>
+    const usuario = await Usuario
+        .findOne({ email: req.body.email });
+    req.session.email = req.body.email;
+    if (!usuario) return res.status(404).render('error', { error: 404, message: 'No se encontró el usuario.'});
+    if (usuario.password !== req.body.password) return res.status(404).render('error', { error: 404, message: 'No coincide usuario y contraseña.'});
+    res.render('lista_productos', { usuario });
+    
     
 });
 
-router.post('/register', (req, res) => {
+/*router.post('/register', (req, res) => {
     //Procesar login, para guardar datos en sesión se puede usar req.session.propiedad = valor;
     let {login, password} = req.body;
     if (usuarios.hasOwnProperty(login)){
@@ -64,16 +58,57 @@ router.post('/register', (req, res) => {
     req.session.login = login;
     return res.redirect('/mi_lista');   
     
+});*/
+router.post('/register', async (req, res) => {
+    const { error } = validate(req.body);
+    if (error) return res.status(400).render('error', { error: 400, message: error.details[0].message });
+
+    let usuario = await Usuario.findOne({ email: req.body.email });
+    if (usuario) return res.status(400).render('error', { error: 400, message: 'El usuario ya fue registrado previamente' });
+
+    usuario = new Usuario({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        gender: req.body.gender
+    });
+    req.session.email = req.body.email;
+    await usuario.save();
+    return res.redirect('/mi_lista'); 
+    
+    //return res.redirect(`/trainer/${ req.body.name }`);
+    
 });
 
 
 
-router.get('/mi_lista', (req, res) => {
+router.get('/mi_lista', async (req, res) => {
     // Desplegar lista en archivo EJS
-    let usuario = req.session.login; 
-    let productos = usuarios[usuario].productos;
-    console.log(usuario);
-    res.render('mi_lista', {usuario: usuario, productos: productos});
+    let email = req.session.email;
+
+    const usuario = await Usuario
+        .findOne({ email: email });
+    res.render('agregar_productos', {usuario: usuario});
 });
+
+router.post('/productos/lista', async (req, res) => {
+    // Desplegar lista en archivo EJS
+    let email = req.session.email;
+
+    const usuario = await Usuario
+        .findOne({ email: email })
+        //.update({productos:req.productos})
+        ;
+    res.render('lista_productos', {usuario: usuario});
+});
+
+router.post('/profile', async (req, res) => {
+    let email = req.session.email;
+    const usuario = await Usuario
+        .findOne({ email: email });
+    res.render('usuario', { usuario });
+} )
+
+
 
 module.exports = router;

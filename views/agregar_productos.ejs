@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Agregar Productos
+  </title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  <style>
+    h1{
+        font-family: 'Rubik', sans-serif;
+        color: black;
+        text-align: center;
+      }
+  </style>
+</head>
+<body style="background-color: #e3f2fd;">
+        <div class="container" style="background-color: #e3f2fd; padding: 100px;">
+                <form action='/profile' method="POST">
+                    <input  type="submit" value="Profile">
+                </form>
+                <h1>Agregar Productos</h1>
+                <form style="padding-top: 40px;" action="/productos/lista" method="POST">
+                    <div class="form-group">
+                        <label for="inputState">Productos</label>
+                        <select id="inputState" class="form-control" name="producto">
+                          <option selected>Choose...</option>
+                          <option>Leche</option>
+                          <option>Café</option>
+                          <option>Helado</option>
+                          <option>Carne</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+        
+            </div>
+</body>
+
+</html>

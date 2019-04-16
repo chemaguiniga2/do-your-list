@@ -38,17 +38,18 @@
 </head>
 
 <body>
-    <h1>Usuario: <%= usuario %></h1>
+    <h1>Usuario: <%= usuario.email %></h1>
     <div class="w3-container cont-tab">
         <table class="w3-table w3-striped">
+            <form action='/profile' method="POST">
+                <input  type="submit" value="Profile">
+            </form>
             <form action='/logout' method="GET">
                 <input  type="submit" value="Cerrar sesión">
             </form>
-            <form action="/guardar_tareas" method="POST">
                 <p>
-                    <textarea id="productos" type="textarea" style="padding-left:10px" name="Productos"><%= productos %></textarea>
+                    <textarea id="productos" type="textarea" style="padding-left:10px" name="Productos"><%= usuario.productos %></textarea>
                 </p>
-            </form>
         </table>
     </div>
 </body>
