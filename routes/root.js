@@ -2,16 +2,10 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const session = require('express-session');
-const usuarios = {};
+const passport = require('passport');
+const auth = require('../middleware/auth');
 const { Usuario, validate } = require('../models/usuario');
 
-function guardarUsuario(password){
-    usuario = {
-        password: password,
-        productos: "Lista de compras..."
-    }
-    return usuario;
-}
 
 
 router.get('/', (req, res) => {
@@ -34,7 +28,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-router.post('/login', async (req, res) => {
+/*router.post('/login', async (req, res) => {
     //Procesar login, para guardar datos en sesión se puede usar req.session.propiedad = valor;
     ///trainer/<%= i.name %>
     const usuario = await Usuario
@@ -42,10 +36,16 @@ router.post('/login', async (req, res) => {
     req.session.email = req.body.email;
     if (!usuario) return res.status(404).render('error', { error: 404, message: 'No se encontró el usuario.'});
     if (usuario.password !== req.body.password) return res.status(404).render('error', { error: 404, message: 'No coincide usuario y contraseña.'});
-    res.render('lista_productos', { usuario });
+    res.render('lista_productos', { usuario });   
     
-    
-});
+});*/
+
+router.post('/login', passport
+    .authenticate('local-login', {
+        successRedirect: '/productos/lista',
+        failureRedirect: '/login',
+        passReqToCallback: true
+}));
 
 /*router.post('/register', (req, res) => {
     //Procesar login, para guardar datos en sesión se puede usar req.session.propiedad = valor;
@@ -59,7 +59,8 @@ router.post('/login', async (req, res) => {
     return res.redirect('/mi_lista');   
     
 });*/
-router.post('/register', async (req, res) => {
+
+/*router.post('/register', async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).render('error', { error: 400, message: error.details[0].message });
 
@@ -78,34 +79,29 @@ router.post('/register', async (req, res) => {
     
     //return res.redirect(`/trainer/${ req.body.name }`);
     
+});*/
+
+router.post('/register', passport
+    .authenticate('local-register', {
+        successRedirect: '/mi_lista',
+        failureRedirect: '/register',
+        passReqToCallback: true
+}));
+
+
+
+router.get('/mi_lista', auth, async (req, res) => {
+    let usuario = req.user;
+    res.render('agregar_productos', {usuario});
 });
 
-
-
-router.get('/mi_lista', async (req, res) => {
-    // Desplegar lista en archivo EJS
-    let email = req.session.email;
-
-    const usuario = await Usuario
-        .findOne({ email: email });
-    res.render('agregar_productos', {usuario: usuario});
+router.get('/productos/lista', auth, async (req, res) => {
+    let usuario = req.user;
+    res.render('lista_productos', {usuario});
 });
 
-router.post('/productos/lista', async (req, res) => {
-    // Desplegar lista en archivo EJS
-    let email = req.session.email;
-
-    const usuario = await Usuario
-        .findOne({ email: email })
-        //.update({productos:req.productos})
-        ;
-    res.render('lista_productos', {usuario: usuario});
-});
-
-router.post('/profile', async (req, res) => {
-    let email = req.session.email;
-    const usuario = await Usuario
-        .findOne({ email: email });
+router.post('/profile',auth, async (req, res) => {
+    let usuario = req.user;
     res.render('usuario', { usuario });
 } )
 

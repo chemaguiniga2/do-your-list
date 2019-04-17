@@ -5,17 +5,19 @@ const path = require('path');
 const session = require('express-session');
 const app = express();
 const rootRouter = require('./routes/root');
+const passport = require('passport');
+require('./passport/local');
 
-
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded( {extended: false }));
-app.set('view engine', 'ejs');
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false }
+    saveUninitialized: false    
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded( {extended: false }));
+app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use('/', rootRouter); 

@@ -78,7 +78,7 @@ function validate(usuario){
 
 function validateLogin(usuario){
     const schema = {
-        name: Joi.string().required().trim(),
+        email: Joi.string().required().trim(),
         password: Joi.string().required().trim(),
 
     }
