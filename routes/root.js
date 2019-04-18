@@ -42,7 +42,7 @@ router.get('/logout', (req, res) => {
 
 router.post('/login', passport
     .authenticate('local-login', {
-        successRedirect: '/productos/lista',
+        successRedirect: '/profile',
         failureRedirect: '/login',
         passReqToCallback: true
 }));
@@ -83,7 +83,7 @@ router.post('/login', passport
 
 router.post('/register', passport
     .authenticate('local-register', {
-        successRedirect: '/mi_lista',
+        successRedirect: '/profile',
         failureRedirect: '/register',
         passReqToCallback: true
 }));
@@ -100,10 +100,11 @@ router.get('/productos/lista', auth, async (req, res) => {
     res.render('lista_productos', {usuario});
 });
 
-router.post('/profile',auth, async (req, res) => {
+
+router.get('/profile', auth, async (req, res) => {
     let usuario = req.user;
     res.render('usuario', { usuario });
-} )
+});
 
 
 

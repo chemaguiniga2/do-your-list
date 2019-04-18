@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="/js/my.js"></script>
   <style>
     h1{
         font-family: 'Rubik', sans-serif;
@@ -16,26 +18,99 @@
         text-align: center;
       }
   </style>
+
 </head>
+
 <body style="background-color: #e3f2fd;">
+    
+    <nav class="navbar navbar-expand-lg " style="background-color: #e3f2fd;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" href="/">Do-Your-List.com</a>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/logout">Log Out</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
         <div class="container" style="background-color: #e3f2fd; padding: 100px;">
-                <form action='/profile' method="POST">
-                    <input  type="submit" value="Profile">
-                </form>
                 <h1>Agregar Productos</h1>
                 <form style="padding-top: 40px;" action="/productos/lista" method="POST">
                     <div class="form-group">
-                        <label for="inputState">Productos</label>
-                        <select id="inputState" class="form-control" name="producto">
-                          <option selected>Choose...</option>
-                          <option>Leche</option>
-                          <option>Café</option>
-                          <option>Helado</option>
-                          <option>Carne</option>
+                        <label for="categoria">Categoria</label>
+                        <select id="categoria" class="form-control" name="categoria">
+                          <option>Choose...</option>
+                          <option value="lacteos">Lacteos</option>
+                          <option value="Carnes">Carnes</option>
+                          <option value="Harinas">Harinas</option>
+                          <option value="pan">Pan</option>
+                          <option value="sazonadores">Sazonadores</option>
+                          <option value="higiene">Higiene personal</option>
+                          <option value="bebidas">Bebidas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="producto">Categoria</label>
+                        <select disabled id="producto" class="form-control" name="producto">
+                          <option>Choose...</option>
+                          <option value="leche" class="lacteos" hidden = true>Leche</option>
+                          <option value="crema" class="lacteos" hidden = true>Crema</option>
+                          <option value="mantequilla" class="lacteos" hidden = true>mantequilla</option>
+                          <option value="bistec" class = "carnes" hidden = true>Bistec</option>
+                          <option value="milanesa" class="carnes" hidden = true>Milanesa</option>
+                          <option value="pechuga" class="carnes" hidden = true>Pechuga</option>
+                          <option value="pollo" class="carnes" hidden = true>Pollo Entero</option>
+                          <option value="harina" class="harinas" hidden = true>Harina</option>
+                          <option value="azucar" class="harinas" hidden = true>Azucar</option>
+                          <option value="pan" class="pan" hidden = true>Pan</option>
+                          <option value="knorr" class = "sazonadores" hidden = true>Knorr Suiza</option>
+                          <option value="sal" class="sazonadores" hidden = true>Sal</option>
+                          <option value="shampoo" class="higiene" hidden = true>Shampoo</option>
+                          <option value="jabon" class="higiene" hidden = true>Jabón</option>
+                          <option value="agua" class="bebidas" hidden = true>Agua</option>
+                          
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
+                
+
+                <script>
+                 $("#categoria").on("change", function() {
+                   $('#producto').removeAttr("disabled");
+                   //alert( $("#categoria").val() );
+                   //$('.lacteos').attr("hidden", true);
+                   switch($("#categoria").val()){
+                     case "lacteos":
+                     $('.lacteos').attr("hidden", false);
+                     break;
+                     case "Carnes":
+                     $('.carnes').attr("hidden", false);
+                     break;
+                     case "Harinas":
+                     $('.harinas').attr("hidden", false);
+                     break;
+                     case "pan":
+                     $('.pan').attr("hidden", false);
+                     break;
+                     case "sazonadores":
+                     $('.sazonadores').attr("hidden", false);
+                     break;
+                     case "higiene":
+                     $('.higiene').attr("hidden", false);
+                     break;
+                     case "bebidas":
+                     $('.bebidas').attr("hidden", false);
+                     break;
+                   }
+                 });
+                </script>
         
             </div>
 </body>
