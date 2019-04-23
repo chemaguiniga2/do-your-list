@@ -56,8 +56,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="producto">Categoria</label>
-                        <select disabled id="producto" class="form-control" name="producto">
+                        <label for="name">Categoria</label>
+                        <select disabled id="name" class="form-control" name="name">
                           <option>Choose...</option>
                           <option value="leche" class="lacteos" hidden = true>Leche</option>
                           <option value="crema" class="lacteos" hidden = true>Crema</option>
@@ -75,7 +75,15 @@
                           <option value="jabon" class="higiene" hidden = true>Jabón</option>
                           <option value="agua" class="bebidas" hidden = true>Agua</option>
                           
-                        </select>
+                        </select>                      
+                    </div>
+                    <div class="form-group">
+                      <input type="number" name="cantidad" step="1">
+                      <select name="unidad">
+                        <option value="kilos">Kg</option>
+                        <option value="litros">Lts</option>
+                        <option value="elementos">Elementos</option>
+                      </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
@@ -83,7 +91,7 @@
 
                 <script>
                  $("#categoria").on("change", function() {
-                   $('#producto').removeAttr("disabled");
+                   $('#name').removeAttr("disabled");
                    //alert( $("#categoria").val() );
                    //$('.lacteos').attr("hidden", true);
                    switch($("#categoria").val()){

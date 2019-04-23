@@ -5,6 +5,7 @@ const session = require('express-session');
 const passport = require('passport');
 const auth = require('../middleware/auth');
 const { Usuario, validate } = require('../models/usuario');
+const { Producto } = require('../models/producto');
 
 
 
@@ -98,6 +99,20 @@ router.get('/mi_lista', auth, async (req, res) => {
 router.get('/productos/lista', auth, async (req, res) => {
     let usuario = req.user;
     res.render('lista_productos', {usuario});
+});
+
+router.post('productos/lista', auth, async (req, res) => {
+    const { error } = validate(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+
+    let producto = new Producto({
+        name: req.body.name,
+        unidad: req.body.unidad,
+        cantidad: req.body.cantidad,
+        categoria: req.body.categoria,
+        fecha: Date.now()
+    });
+
 });
 
 
