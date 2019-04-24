@@ -37,7 +37,7 @@ const productoSchema = new mongoose.Schema({
 
 const Producto = mongoose.model('Producto', productoSchema);
 
-function validate(producto){
+function validateProd(producto){
     const schema = {
         unidad: Joi.string().required().trim(),
         name: Joi.string().required().trim(),
@@ -49,4 +49,4 @@ function validate(producto){
 }
 
 exports.Producto = Producto;
-exports.validate = validate;
+exports.validateProd = validateProd;

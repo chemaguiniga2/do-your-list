@@ -5,7 +5,7 @@ const session = require('express-session');
 const passport = require('passport');
 const auth = require('../middleware/auth');
 const { Usuario, validate } = require('../models/usuario');
-const { Producto } = require('../models/producto');
+const { Producto, validateProd } = require('../models/producto');
 
 
 
@@ -98,11 +98,19 @@ router.get('/mi_lista', auth, async (req, res) => {
 
 router.get('/productos/lista', auth, async (req, res) => {
     let usuario = req.user;
-    res.render('lista_productos', {usuario});
+    const pageSize = parseInt(req.query['pageSize']) || 5;
+    let pageNumber = parseInt(req.query['pageNumber']) || 1;
+    const producto = await Producto
+        .find()
+        .populate('Usuario')
+        .select({name:1, categoria:1});
+    res.render('lista_productos', {usuario, producto, pageSize, pageNumber});
 });
 
-router.post('productos/lista', auth, async (req, res) => {
-    const { error } = validate(req.body);
+router.post('/productos/lista', auth, async (req, res) => {
+    let usuario = req.user;
+
+    const { error } = validateProd(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     let producto = new Producto({
@@ -110,14 +118,21 @@ router.post('productos/lista', auth, async (req, res) => {
         unidad: req.body.unidad,
         cantidad: req.body.cantidad,
         categoria: req.body.categoria,
-        fecha: Date.now()
+        fecha: Date.now(),
+        usuario: req.user._id
     });
+
+    await producto.save();
+
+    return res.redirect('/mi_lista');
+
 
 });
 
 
 router.get('/profile', auth, async (req, res) => {
     let usuario = req.user;
+    console.log(req.user);
     res.render('usuario', { usuario });
 });
 

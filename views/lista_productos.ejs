@@ -48,6 +48,19 @@
                 <input  type="submit" value="Cerrar sesión">
             </form>
                 <p>
+                    <table class="w3-table w3-border w3-bordered w3-centered">
+                        <% for (let i of producto){ %>
+                        <tr>
+                            <td>
+                                <div class="w3-card-4 w3-hover-opacity w3-hover-blue">
+                                    <div class="w3-container">
+                                        <h4><b><%= i.name %></b></h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </table>
                     <textarea id="productos" type="textarea" style="padding-left:10px" name="Productos"><%= usuario.productos %></textarea>
                 </p>
         </table>
