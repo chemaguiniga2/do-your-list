@@ -7,6 +7,7 @@
     <title>List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <style>
@@ -37,33 +38,54 @@
     </style>
 </head>
 
-<body>
-    <h1>Usuario: <%= usuario.email %></h1>
+<body class="w3-light-grey">
+    <nav class="navbar navbar-expand-lg " style="background-color: #e3f2fd;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" href="#">Do-Your-List.com</a>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/profile"><%= usuario.name %></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/mi_lista">Agregar Productos</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/logout">Log Out</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
     <div class="w3-container cont-tab">
-        <table class="w3-table w3-striped">
-            <form action='/profile' method="POST">
-                <input  type="submit" value="Profile">
-            </form>
-            <form action='/logout' method="GET">
-                <input  type="submit" value="Cerrar sesión">
-            </form>
+    
                 <p>
-                    <table class="w3-table w3-border w3-bordered w3-centered">
-                        <% for (let i of producto){ %>
-                        <tr>
-                            <td>
-                                <div class="w3-card-4 w3-hover-opacity w3-hover-blue">
-                                    <div class="w3-container">
-                                        <h4><b><%= i.name %></b></h4>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <% } %>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i of producto){ %>
+                            <tr>
+                                <td><%= i.name %></td>
+                                <td><%= i.categoria %></td>
+                                <td><%= i.cantidad %>  <%= i.unidad %></td>
+                                <td><%= i.fecha %></td>
+                            </tr>
+                                
+                            <% } %>
+                        </tbody>
+                        
                     </table>
-                    <textarea id="productos" type="textarea" style="padding-left:10px" name="Productos"><%= usuario.productos %></textarea>
                 </p>
-        </table>
+        
     </div>
 </body>
 
