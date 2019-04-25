@@ -14,9 +14,33 @@
       color: black;
       font-family: 'Rubik', sans-serif;
     }
+
+    #myVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%; 
+      min-height: 100%;
+    }
+
+    .content {
+      position: relative;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: #f1f1f1;
+      width: 100%;
+      padding: 20px;
+    }
   </style>
 </head>
 <body>
+
+    <video autoplay muted loop id="myVideo">
+        <source src="/beach.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+
     <nav class="navbar navbar-expand-lg " style="background-color: #e3f2fd;">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,15 +48,21 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="/">Do-Your-List.com</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="/login">Log In</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/register">Register</a>
-          </li>
         </ul>
       </div>
     </nav> 
+
+    <div class="container">
+      <div class="content">
+        <div style="padding: 170px;">
+            <h3 style="text-align: center; padding-bottom: 50px;">Regístrate</h3>            
+            <a href="/register"><button type="button" class="btn btn-light btn-lg btn-block">Register</button></a>
+            <h3 style="text-align: center; padding-bottom: 50px; padding-top: 50px;">Ingresa</h3>
+            <a href="/login"><button type="button" class="btn btn-light btn-lg btn-block">Log In</button></a>
+        </div>
+      </div>
+    </div>
+
 </body>
 
 </html>
