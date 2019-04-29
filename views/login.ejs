@@ -15,10 +15,30 @@
         color: black;
         text-align: center;
       }
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%; 
+        min-height: 100%;
+      }
+
+    .content {
+      position: relative;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: #f1f1f1;
+      width: 100%;
+      padding: 20px;
+    }
   </style>
 </head>
 <body style="background-color: #e3f2fd;">
-    <div class="container" style="background-color: #e3f2fd; padding: 100px;">
+  <video autoplay muted loop id="myVideo">
+    <source src="/beach.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+    <div class="container content" style="padding: 100px;">
         <h1>Do-Your-List.com</h1>
     
                 <form style="padding-top: 40px;" action="/login" method="POST">
