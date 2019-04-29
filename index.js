@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use('/api', rootRouterApi);
 app.use('/', rootRouter); 
-// Mi comentario
+// Mi comentario2!!
 
 mongoose.connect(process.env.DB_CON, { useNewUrlParser: true, useCreateIndex: true })
     .then(() => console.log('Conectado a MongoDB...'))
