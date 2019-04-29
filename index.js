@@ -23,11 +23,13 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use('/api', rootRouterApi);
 app.use('/', rootRouter); 
-
+// Mi comentario
 
 mongoose.connect(process.env.DB_CON, { useNewUrlParser: true, useCreateIndex: true })
     .then(() => console.log('Conectado a MongoDB...'))
     .catch(err => console.log('Error...', err.message));
+
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Escuchando en el puerto ${ port }`));

@@ -38,7 +38,7 @@ router.post('login', async (req, res) => {
     if (!usuario) res.status(404).send('El usuario o password son incorrectos');
     const validPassword = await bcrypt.compare(req.body.password, usuario.password);
 
-    const token
+    //const token
 });
 
 module.exports = router;
