@@ -6,6 +6,8 @@ const passport = require('passport');
 const auth = require('../middleware/auth');
 const { Usuario, validate } = require('../models/usuario');
 const { Producto, validateProd } = require('../models/producto');
+const { prodScrap, validateProdScrap } = require('../models/prodScrap');
+const puppeteer = require('puppeteer');
 
 
 
@@ -93,7 +95,81 @@ router.post('/register', passport
 
 router.get('/mi_lista', auth, async (req, res) => {
     let usuario = req.user;
+    /*(async () => {
+        let url = 'https://super.walmart.com.mx/quesos/queso-tipo-chihuahua-arla-400-g/00571195304732';
+    
+        let browser = await puppeteer.launch();
+        let page = await browser.newPage();
+    
+        await page.goto(url, {waitUntil: 'networkidle2'});
+        
+        let data = await page.evaluate(() => {
+            let titulo = document.querySelector('#root > div > div > main > div.ez6st4XksKUGZfGdvIhjV > section > div:nth-child(1) > div._1mp6DRSv6MS2tqc65wTjwJ > div.vQMIKtScxt-0gP4BIwEhI > span > h1').innerText;
+            let precio = document.querySelector('#root > div > div > main > div.ez6st4XksKUGZfGdvIhjV > section > div:nth-child(1) > div._1mp6DRSv6MS2tqc65wTjwJ > div.vQMIKtScxt-0gP4BIwEhI > div.FVpRm-ZwHtHVwahtm--xo > h4').innerText;
+    
+            return {
+                titulo, 
+                precio
+            }
+    
+        });
+    
+        console.log(data);
+        let producto = new prodScrap({
+            name: data.titulo,
+            categoria: 'Lácteos',
+            precio: data.precio
+    
+        });
+    
+        await producto.save();
+    
+        await browser.close();
+    
+    })();*/
     res.render('agregar_productos', {usuario});
+});
+
+router.get('/promociones', auth, async (req, res) => {
+    let usuario = req.user;
+
+    let data = (async function main() {
+        try {
+            let url = 'https://www.costco.com.mx/Comida-y-Bebida/Cafe-Te-y-Bebidas/Leche/c/cos_6.6.7';
+    
+            let browser = await puppeteer.launch();
+            let page = await browser.newPage();
+    
+            await page.goto(url, {waitUntil: 'networkidle2'});
+            await page.waitForSelector('li.product-item.vline');
+            page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36');;
+           
+            const sec = await page.$$('li.product-item.vline');
+            
+            console.log(sec.length);
+            let prods = [];
+    
+            for (const se of sec) {
+                let dat = {};
+                dat.titulo = await se.$eval('div.product-name-container', p => p.innerText);
+                dat.precio = await se.$eval('div.original-price', e => e.innerText);
+                //console.log('name', titulo);
+    
+                prods.push(dat);
+            }
+            
+    
+            await browser.close();
+    
+            return prods;
+        } catch (e) {
+            console.log('Error', e);
+        }
+        
+    })();
+
+    res.render('scrapper', {usuario, data});
+
 });
 
 router.get('/productos/lista', auth, async (req, res) => {
@@ -105,7 +181,6 @@ router.get('/productos/lista', auth, async (req, res) => {
         .limit(10)
         .sort({ fecha: 1 })
         .select({_id: 0, name:1, categoria:1, fecha: 1, cantidad: 1, unidad: 1, usuario: 1});
-    console.log(producto);
     res.render('lista_productos', {usuario, producto, pageSize, pageNumber});
 });
 
