@@ -1,0 +1,10 @@
+POST http://127.0.0.1:3000/api/producto/add
+Content-Type: application/json
+
+{
+    "name": "coca",
+    "unidad": "km",
+    "cantidad": "5",
+    "categoria": "Higiene y Belleza",
+    "usuario": "5cb6b99b7734766a84b8431d"
+}

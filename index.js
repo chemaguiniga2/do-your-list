@@ -6,6 +6,7 @@ const session = require('express-session');
 const app = express();
 const rootRouter = require('./routes/root');
 const rootRouterApi = require('./routes/apiAgregar');
+const rootRouterApiProducto = require('./routes/apiProducto');
 const passport = require('passport');
 require('./passport/local');
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded( {extended: false }));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
+app.use('/api/producto', rootRouterApiProducto);
 app.use('/api', rootRouterApi);
 app.use('/', rootRouter); 
 // Mi comentario2!!

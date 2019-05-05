@@ -6,7 +6,7 @@ const passport = require('passport');
 const auth = require('../middleware/auth');
 const { Usuario, validate } = require('../models/usuario');
 const { Producto, validateProd } = require('../models/producto');
-const { prodScrap, validateProdScrap } = require('../models/prodScrap');
+//const { prodScrap, validateProdScrap } = require('../models/prodScrap');
 const puppeteer = require('puppeteer');
 
 
