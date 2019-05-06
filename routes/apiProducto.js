@@ -8,7 +8,10 @@ const jwt = require('jsonwebtoken');
 
 // Agregar producto a usuario
 router.post('/add', async (req, res) => {
+    console.log("entro api/producto/add post");
     const { error } = validateProdApi(req.body);
+    console.log(req.body);
+    if(error) console.log(error.details[0].message);
     if (error) return res.status(400).send(error.details[0].message);
     let producto = new Producto({
         name: req.body.name,
@@ -25,6 +28,7 @@ router.post('/add', async (req, res) => {
 
 // Buscar producto por nombre
 router.get('/:name', async (req, res) => {
+    console.log("entro api/producto/:name get");
     const name = req.params.name;
     let producto = await Producto.findOne({ name });
     if (!producto) return res.status(404).send('Producto no encontrado.');
@@ -33,6 +37,7 @@ router.get('/:name', async (req, res) => {
 
 //Modificar producto
 router.put('/:name', async (req, res) => {
+    console.log("entro api/producto/:name put");
     const { error } = validateProd(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -51,7 +56,7 @@ router.put('/:name', async (req, res) => {
 
 //Eliminar producto
 router.delete('/:id', async (req, res) => {
-
+    console.log("entro api/producto/:id delete");
     const name = req.params.id;
     const producto = await Producto.findOneAndDelete({name});
     if (!producto) return res.status(404).send('Producto no encontrado.');

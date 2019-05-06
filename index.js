@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('./startup/logging')();
 const mongoose = require('mongoose');
 const express = require('express');
 const path = require('path');
@@ -8,6 +9,7 @@ const rootRouter = require('./routes/root');
 const rootRouterApi = require('./routes/apiAgregar');
 const rootRouterApiProducto = require('./routes/apiProducto');
 const passport = require('passport');
+const error = require('./middleware/error');
 require('./passport/local');
 
 app.use(session({
@@ -25,13 +27,24 @@ app.use(express.json());
 app.use('/api/producto', rootRouterApiProducto);
 app.use('/api', rootRouterApi);
 app.use('/', rootRouter); 
-// Mi comentario2!!
+app.use(error);
 
-mongoose.connect(process.env.DB_CON, { useNewUrlParser: true, useCreateIndex: true })
+if (!process.env.PORT){
+    throw new Error('No hay puerto definido para el servidor.');
+}
+
+if (!process.env.DB_CON){
+    throw new Error('No hay ruta definida para la base de datos.');
+}
+
+const db_con = process.env.NODE_ENV !== 'test' ? process.env.DB_CON : process.env.DB_CON_TEST;
+
+mongoose.connect(db_con, { useNewUrlParser: true, useCreateIndex: true })
     .then(() => console.log('Conectado a MongoDB...'))
-    .catch(err => console.log('Error...', err.message));
-
-
+    //.catch(err => console.log('Error...', err.message))
+    ;
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Escuchando en el puerto ${ port }`));
+const server = app.listen(port, () => console.log(`Escuchando en el puerto ${ port }`));
+
+module.exports = server;
