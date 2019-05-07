@@ -92,7 +92,7 @@ router.post('/login', passport
 
 router.post('/register', passport
     .authenticate('local-register', {
-        successRedirect: '/profile',
+        successRedirect: '/mi_lista',
         failureRedirect: '/register',
         passReqToCallback: true
 }));
@@ -180,7 +180,13 @@ router.post('/productos/lista', auth, async (req, res) => {
 
 router.get('/profile', auth, async (req, res) => {
     let usuario = req.user;
-    res.render('usuario', { usuario });
+    const producto = await Producto
+        .find({ usuario: usuario._id })
+        .limit(10)
+        .sort({ fecha: 1 })
+        .select({_id: 0, name:1, categoria:1, fecha: 1, cantidad: 1, unidad: 1, usuario: 1});
+
+    res.render('usuario', { usuario, producto });
 });
 
 (async function getOffers() {

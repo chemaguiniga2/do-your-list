@@ -1,0 +1,29 @@
+<div class="w3-container cont-tab w3-light-grey">
+    
+        <p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Características</th>
+                        <th scope="col">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i of producto){ %>
+                    <tr>
+                        <td><%= i.name %></td>
+                        <td><%= i.categoria %></td>
+                        <td><%= i.cantidad %> <%= i.unidad %></td>
+                        <td><%= i.fecha %></td>
+                    </tr>
+                        
+                    <% } %>
+                </tbody>
+                
+            </table>
+        </p>
+
+</div>

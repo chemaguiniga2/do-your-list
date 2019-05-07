@@ -70,3 +70,72 @@ data is not defined/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proy
     76|                                 <td><%= i.precio %></td>
 
 data is not defined
+2019-05-07T00:59:21.905Z [31merror[39m: Could not find the include file "(lista-partial.ejs,"Could not find the include file "(lista-partial.ejs,"
+2019-05-07T01:05:57.554Z [31merror[39m: Could not find the include file "(lista-partial,"Could not find the include file "(lista-partial,"
+2019-05-07T01:31:41.899Z [31merror[39m: Producto validation failed: caracteristicas: Path `caracteristicas` is required.Producto validation failed: caracteristicas: Path `caracteristicas` is required.
+2019-05-07T01:43:17.860Z [31merror[39m: /Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/usuario.ejs:49
+    47|             <li><b>Gender: <%= usuario.gender %></b></li>
+    48|             <li><b>Productos:</b>
+ >> 49|               <%- include lista-partial.ejs %>
+    50|             </li>           
+    51|         </ul>
+    52|     </div>
+
+/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/lista-partial.ejs:19
+    17|                         <td><%= i.name %></td>
+    18|                         <td><%= i.categoria %></td>
+ >> 19|                         <td><%= i.caracteristicas %></td>
+    20|                         <td><%= i.fecha %></td>
+    21|                     </tr>
+    22|                         
+
+Cannot read property 'charAt' of undefined/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/usuario.ejs:49
+    47|             <li><b>Gender: <%= usuario.gender %></b></li>
+    48|             <li><b>Productos:</b>
+ >> 49|               <%- include lista-partial.ejs %>
+    50|             </li>           
+    51|         </ul>
+    52|     </div>
+
+/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/lista-partial.ejs:19
+    17|                         <td><%= i.name %></td>
+    18|                         <td><%= i.categoria %></td>
+ >> 19|                         <td><%= i.caracteristicas %></td>
+    20|                         <td><%= i.fecha %></td>
+    21|                     </tr>
+    22|                         
+
+Cannot read property 'charAt' of undefined
+2019-05-07T01:46:59.291Z [31merror[39m: /Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/usuario.ejs:49
+    47|             <li><b>Gender: <%= usuario.gender %></b></li>
+    48|             <li><b>Productos:</b>
+ >> 49|               <%- include lista-partial.ejs %>
+    50|             </li>           
+    51|         </ul>
+    52|     </div>
+
+/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/lista-partial.ejs:19
+    17|                         <td><%= i.name %></td>
+    18|                         <td><%= i.categoria %></td>
+ >> 19|                         <td><%= i.caracteristicas %></td>
+    20|                         <td><%= i.fecha %></td>
+    21|                     </tr>
+    22|                         
+
+Cannot read property 'charAt' of undefined/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/usuario.ejs:49
+    47|             <li><b>Gender: <%= usuario.gender %></b></li>
+    48|             <li><b>Productos:</b>
+ >> 49|               <%- include lista-partial.ejs %>
+    50|             </li>           
+    51|         </ul>
+    52|     </div>
+
+/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/lista-partial.ejs:19
+    17|                         <td><%= i.name %></td>
+    18|                         <td><%= i.categoria %></td>
+ >> 19|                         <td><%= i.caracteristicas %></td>
+    20|                         <td><%= i.fecha %></td>
+    21|                     </tr>
+    22|                         
+
+Cannot read property 'charAt' of undefined
