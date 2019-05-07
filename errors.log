@@ -2,3 +2,71 @@
 2019-05-06T02:11:48.393Z [31merror[39m: Cannot read property 'details' of nullCannot read property 'details' of null
 2019-05-06T02:12:07.220Z [31merror[39m: Cannot read property 'details' of nullCannot read property 'details' of null
 2019-05-06T02:12:30.134Z [31merror[39m: Cannot read property 'details' of nullCannot read property 'details' of null
+2019-05-06T21:23:46.964Z [31merror[39m: /Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/scrapper.ejs:73
+    71|                         </thead>
+    72|                         <tbody>
+ >> 73|                             <% for (let i of data){ %>
+    74|                             <tr>
+    75|                                 <td><%= i.titulo %></td>
+    76|                                 <td><%= i.precio %></td>
+
+data is not defined/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/scrapper.ejs:73
+    71|                         </thead>
+    72|                         <tbody>
+ >> 73|                             <% for (let i of data){ %>
+    74|                             <tr>
+    75|                                 <td><%= i.titulo %></td>
+    76|                                 <td><%= i.precio %></td>
+
+data is not defined
+2019-05-06T21:23:50.265Z [31merror[39m: /Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/scrapper.ejs:73
+    71|                         </thead>
+    72|                         <tbody>
+ >> 73|                             <% for (let i of data){ %>
+    74|                             <tr>
+    75|                                 <td><%= i.titulo %></td>
+    76|                                 <td><%= i.precio %></td>
+
+data is not defined/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/scrapper.ejs:73
+    71|                         </thead>
+    72|                         <tbody>
+ >> 73|                             <% for (let i of data){ %>
+    74|                             <tr>
+    75|                                 <td><%= i.titulo %></td>
+    76|                                 <td><%= i.precio %></td>
+
+data is not defined
+2019-05-06T21:23:54.125Z [31merror[39m: /Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/scrapper.ejs:73
+    71|                         </thead>
+    72|                         <tbody>
+ >> 73|                             <% for (let i of data){ %>
+    74|                             <tr>
+    75|                                 <td><%= i.titulo %></td>
+    76|                                 <td><%= i.precio %></td>
+
+data is not defined/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/scrapper.ejs:73
+    71|                         </thead>
+    72|                         <tbody>
+ >> 73|                             <% for (let i of data){ %>
+    74|                             <tr>
+    75|                                 <td><%= i.titulo %></td>
+    76|                                 <td><%= i.precio %></td>
+
+data is not defined
+2019-05-06T21:24:07.829Z [31merror[39m: /Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/scrapper.ejs:73
+    71|                         </thead>
+    72|                         <tbody>
+ >> 73|                             <% for (let i of data){ %>
+    74|                             <tr>
+    75|                                 <td><%= i.titulo %></td>
+    76|                                 <td><%= i.precio %></td>
+
+data is not defined/Users/josemariaaguinigadiaz/Desktop/Labo Desarrollo WEB/proyecto/views/scrapper.ejs:73
+    71|                         </thead>
+    72|                         <tbody>
+ >> 73|                             <% for (let i of data){ %>
+    74|                             <tr>
+    75|                                 <td><%= i.titulo %></td>
+    76|                                 <td><%= i.precio %></td>
+
+data is not defined

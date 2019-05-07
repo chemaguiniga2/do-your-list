@@ -61,7 +61,7 @@
     <div class="w3-container cont-tab">
     
                 <p>
-
+                    <h2>Destacados</h2>
                     <table class="table">
                         <thead>
                             <tr>
@@ -70,7 +70,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (let i of data){ %>
+                            <% for (let i of prodsRelev){ %>
                             <tr>
                                 <td><%= i.titulo %></td>
                                 <td><%= i.precio %></td>
@@ -81,6 +81,70 @@
                         
                     </table>
                 </p>
+                <p>
+                    <h2>Lácteos</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Titulo</th>
+                                <th scope="col">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i of prodsLacteo){ %>
+                            <tr>
+                                <td><%= i.titulo %></td>
+                                <td><%= i.precio %></td>
+                            </tr>
+                                
+                            <% } %>
+                        </tbody>
+                        
+                    </table>
+                </p>
+                <p>
+                    <h2>Despensa</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Titulo</th>
+                                <th scope="col">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i of prodsDesp){ %>
+                            <tr>
+                                <td><%= i.titulo %></td>
+                                <td><%= i.precio %></td>
+                            </tr>
+                                
+                            <% } %>
+                        </tbody>
+                        
+                    </table>
+                </p>
+                <p>
+                    <h2>Productos Kirkland</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Titulo</th>
+                                <th scope="col">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i of prodsKirk){ %>
+                            <tr>
+                                <td><%= i.titulo %></td>
+                                <td><%= i.precio %></td>
+                            </tr>
+                                
+                            <% } %>
+                        </tbody>
+                        
+                    </table>
+                </p>
+                
         
     </div>
 </body>
