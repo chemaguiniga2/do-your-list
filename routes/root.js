@@ -144,17 +144,6 @@ router.get('/promociones', auth, async (req, res) => {
 
 });
 
-router.get('/productos/lista', auth, async (req, res) => {
-    let usuario = req.user;
-    const pageSize = parseInt(req.query['pageSize']) || 5;
-    let pageNumber = parseInt(req.query['pageNumber']) || 1;
-    const producto = await Producto
-        .find({ usuario: usuario._id })
-        .limit(10)
-        .sort({ fecha: 1 })
-        .select({_id: 0, name:1, categoria:1, fecha: 1, cantidad: 1, unidad: 1, usuario: 1});
-    res.render('lista_productos', {usuario, producto, pageSize, pageNumber});
-});
 
 router.post('/productos/lista', auth, async (req, res) => {
 

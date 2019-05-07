@@ -31,6 +31,37 @@
       width: 100%;
       padding: 20px;
     }
+
+    :focus{outline: none;}
+
+    /* necessary to give position: relative to parent. */
+    input[type="text"]{font: 15px/24px 'Muli', sans-serif; color: #ffffff; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+    input[type="password"]{font: 15px/24px 'Muli', sans-serif; color: #ffffff; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+    form{text-align: -webkit-center;}
+    .form-control{width: 24%;}
+    .form-gr{padding-left: 10px;}
+    :focus{outline: none;}
+
+    .col-3{width: 27.33%; position: relative;} /* necessary to give position: relative to parent. */
+    input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #ffffff; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+
+    
+    
+    .effect-16, 
+    .effect-17, 
+    .effect-18{border: 0; padding: 4px 0; border-bottom: 1px solid #ccc; background-color: transparent;}
+
+    .effect-16 ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #ffffff; transition: 0.4s;}
+    .effect-16:focus ~ .focus-border,
+    .has-content.effect-16 ~ .focus-border{width: 100%; transition: 0.4s;}
+    .effect-16 ~ label{position: absolute; left: 0; width: 100%; top: 9px; color: #aaa; transition: 0.3s; z-index: -1; letter-spacing: 0.5px;}
+    .effect-16:focus ~ label, .has-content.effect-16 ~ label{top: -16px; font-size: 12px; color: #ffffff; transition: 0.3s;}
+
+    
+    .has-content.effect-18 ~ .focus-border:before,
+    .has-content.effect-18 ~ .focus-border:after{width: 50%; transition: 0.4s;}
+    
+
   </style>
 </head>
 <body style="background-color: #e3f2fd;">
@@ -41,21 +72,27 @@
     <div class="container content" style="padding: 100px;">
         <h1>Do-Your-List.com</h1>
     
-                <form style="padding-top: 40px;" action="/login" method="POST">
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Email address</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-                        </div>
-                        <div class="form-group form-check">
-                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Log In</button>
-                </form>
+        <form style="padding-top: 40px;" action="/login" method="POST">
+                <div class="form-group">
+                    <div class="col-3 input-effect">
+                        <label for="email">Enter Email</label>
+                        <input class="effect-16" type="text" placeholder="Email" id="email" name="email">
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-3 input-effect">
+                        <label for="email">Enter Password</label>
+                        <input class="effect-16" type="password" placeholder="Password" id="password" name="password">
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
        
 
     </div>
