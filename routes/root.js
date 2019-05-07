@@ -185,6 +185,30 @@ router.get('/borrar/:id', auth ,async (req, res) => {
     return res.redirect('/profile');
 });
 
+router.get('/editar/:id', auth, async (req, res) => {
+    let usuario = req.user;
+    let id = req.params.id;
+    const producto = await Producto.findOne({ _id: id });
+    if (!producto) return res.status(404).send('Producto no encontrado');
+    res.render('editar_producto', { producto, usuario });
+});
+
+router.post('/editar/:id', auth, async (req, res) => {
+    let id = req.params.id;
+    const producto = await Producto.findOneAndUpdate({ _id: id }, {
+        $set: {
+            name: req.body.name,
+            unidad: req.body.unidad,
+            cantidad: req.body.cantidad,
+            categoria: req.body.categoria
+        }
+    }, { new: true });
+    if (!producto) return res.status(404).send('Producto no encontrado.');
+    return res.redirect('/profile');
+
+
+});
+
 (async function getOffers() {
     try {
         let url = 'https://www.costco.com.mx/';

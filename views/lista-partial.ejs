@@ -10,6 +10,7 @@
                         <th scope="col">Características</th>
                         <th scope="col">Fecha</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,6 +20,7 @@
                         <td><%= i.categoria %></td>
                         <td><%= i.cantidad %> <%= i.unidad %></td>
                         <td><%= i.fecha %></td>
+                        <td><a href='/editar/<%= i._id %>'>Editar</a></td>
                         <td><a href='/borrar/<%= i._id %>'>Borrar</a></td>
                     </tr>
                         
