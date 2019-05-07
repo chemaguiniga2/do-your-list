@@ -139,3 +139,6 @@ Cannot read property 'charAt' of undefined/Users/josemariaaguinigadiaz/Desktop/L
     22|                         
 
 Cannot read property 'charAt' of undefined
+2019-05-07T17:13:25.262Z [31merror[39m: Could not find matching close tag for "<%=".Could not find matching close tag for "<%=".
+2019-05-07T17:13:54.317Z [31merror[39m: Could not find matching close tag for "<%=".Could not find matching close tag for "<%=".
+2019-05-07T17:17:56.920Z [31merror[39m: Cast to ObjectId failed for value "{ id: '5cd0ecb1803dd002179fa836' }" at path "_id" for model "Producto"Cast to ObjectId failed for value "{ id: '5cd0ecb1803dd002179fa836' }" at path "_id" for model "Producto"

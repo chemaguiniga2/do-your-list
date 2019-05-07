@@ -173,9 +173,16 @@ router.get('/profile', auth, async (req, res) => {
         .find({ usuario: usuario._id })
         .limit(10)
         .sort({ fecha: 1 })
-        .select({_id: 0, name:1, categoria:1, fecha: 1, cantidad: 1, unidad: 1, usuario: 1});
+        .select({_id: 1, name:1, categoria:1, fecha: 1, cantidad: 1, unidad: 1, usuario: 1});
 
     res.render('usuario', { usuario, producto });
+});
+
+router.get('/borrar/:id', auth ,async (req, res) => {
+    let id = req.params.id;
+    const producto = await Producto.deleteOne({ _id: id });
+    if (!producto) return res.status(404).send('Producto no encontrado.');
+    return res.redirect('/profile');
 });
 
 (async function getOffers() {
