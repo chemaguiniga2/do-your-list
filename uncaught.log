@@ -151,3 +151,62 @@ Error: listen EADDRINUSE :::3000
     at Function.Module.runMain (internal/modules/cjs/loader.js:742:12)
     at startup (internal/bootstrap/node.js:266:19)
     at bootstrapNodeJSCore (internal/bootstrap/node.js:596:3)
+2019-05-07T15:12:54.367Z [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1290:14)
+    at listenInCluster (net.js:1338:12)
+    at Server.listen (net.js:1425:7)
+    at Function.listen (C:\Users\Dachely\Desktop\Escuela\Proyecto\do-your-list\node_modules\express\lib\application.js:618:24)
+    at Object.<anonymous> (C:\Users\Dachely\Desktop\Escuela\Proyecto\do-your-list\index.js:48:20)
+    at Module._compile (internal/modules/cjs/loader.js:689:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)
+    at Module.load (internal/modules/cjs/loader.js:599:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:530:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:742:12)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)
+2019-05-07T15:59:17.045Z [31merror[39m: uncaughtException: Identifier 'express' has already been declared
+C:\Users\Dachely\Desktop\Escuela\Proyecto\do-your-list\routes\apiLogin.js:7
+const express = require('express');
+      ^
+
+SyntaxError: Identifier 'express' has already been declared
+    at new Script (vm.js:79:7)
+    at createScript (vm.js:251:10)
+    at Object.runInThisContext (vm.js:303:10)
+    at Module._compile (internal/modules/cjs/loader.js:657:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)
+    at Module.load (internal/modules/cjs/loader.js:599:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:530:3)
+    at Module.require (internal/modules/cjs/loader.js:637:17)
+    at require (internal/modules/cjs/helpers.js:22:18)
+    at Object.<anonymous> (C:\Users\Dachely\Desktop\Escuela\Proyecto\do-your-list\index.js:11:28)
+    at Module._compile (internal/modules/cjs/loader.js:689:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)
+    at Module.load (internal/modules/cjs/loader.js:599:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:530:3)
+2019-05-07T15:59:51.010Z [31merror[39m: uncaughtException: Identifier 'router' has already been declared
+C:\Users\Dachely\Desktop\Escuela\Proyecto\do-your-list\routes\apiLogin.js:7
+const router = express.Router();
+      ^
+
+SyntaxError: Identifier 'router' has already been declared
+    at new Script (vm.js:79:7)
+    at createScript (vm.js:251:10)
+    at Object.runInThisContext (vm.js:303:10)
+    at Module._compile (internal/modules/cjs/loader.js:657:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)
+    at Module.load (internal/modules/cjs/loader.js:599:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:530:3)
+    at Module.require (internal/modules/cjs/loader.js:637:17)
+    at require (internal/modules/cjs/helpers.js:22:18)
+    at Object.<anonymous> (C:\Users\Dachely\Desktop\Escuela\Proyecto\do-your-list\index.js:11:28)
+    at Module._compile (internal/modules/cjs/loader.js:689:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)
+    at Module.load (internal/modules/cjs/loader.js:599:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:530:3)

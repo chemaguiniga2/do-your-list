@@ -1,22 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const { Producto, validateProd, validateProdApi } = require('../models/producto');
-const passport = require('passport');
-const auth = require('../middleware/auth');
+const auth = require('../middleware/authApi');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const { Usuario, validate, validateLogin } = require('../models/usuario');
 
 router.get('/', async (req, res) =>{
-    winston.info('Accediendo a la ruta GET /');
-    const pageSize = parseInt(req.query.pageSize) || 20;
-    const pageNumber = parseInt(req.query.pageNumber) || 1;
-    const usuario = await Usuario
-        .find()
-        .limit(pageSize)
-        .skip((pageNumber-1)*pageSize);
+    console.log("entro!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
+    const usuario  = await Usuario.find();
+    console.log("usuarios: " + usuario);
     res.send(usuario);
 });
+
 
 router.post('/register', async (req, res) => {
     console.log("Entro /register");
@@ -51,7 +46,7 @@ router.post('/register', async (req, res) => {
     return res.status(201).send(usuario);
 });
 
-router.post('/login', async (req, res) => {
+/*router.post('/login', async (req, res) => {
     console.log("Entro /login");
     const { error } = validateLogin(req.body);
     if (error) return res.status(404).send(error.details[0].message);
@@ -61,7 +56,7 @@ router.post('/login', async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, usuario.password);
 
     //const token
-});
+});*/
 
 // Consultar usuario por email
 router.get('/:email', async (req, res) => {
@@ -72,7 +67,7 @@ router.get('/:email', async (req, res) => {
 });
 
 //Modificar usuario
-router.put('/:email', async (req, res) => {
+router.put('/:email', auth, async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -90,7 +85,7 @@ router.put('/:email', async (req, res) => {
 });
 
 //Eliminar usuario
-router.delete('/:email', async (req, res) => {
+router.delete('/:email', auth, async (req, res) => {
 
     const email = req.params.email;
     const usuario = await Usuario.findOneAndDelete({email});

@@ -139,3 +139,6 @@ Cannot read property 'charAt' of undefined/Users/josemariaaguinigadiaz/Desktop/L
     22|                         
 
 Cannot read property 'charAt' of undefined
+2019-05-07T17:32:53.040Z [31merror[39m: winston is not definedwinston is not defined
+2019-05-07T17:33:48.876Z [31merror[39m: winston is not definedwinston is not defined
+2019-05-07T17:49:04.831Z [31merror[39m: winston is not definedwinston is not defined

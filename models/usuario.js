@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
+const jwt = require('jsonwebtoken');
 
 const productoSchema = new mongoose.Schema({
     name: {
@@ -52,7 +53,10 @@ const usuarioSchema = new mongoose.Schema({
     productos: [ productoSchema ]
 }, { toJSON: { getters: true }}); 
 
-
+usuarioSchema.methods.generarAuthToken = function() {
+    const token = jwt.sign({ _id: this._id }, process.env.SECRET );
+    return token;
+}
 
 const Usuario = mongoose.model('Usuario', usuarioSchema);
 
@@ -61,16 +65,7 @@ function validate(usuario){
         name: Joi.string().required().trim(),
         email: Joi.string().required().trim(),
         password: Joi.string().required().trim(),
-        gender: Joi.string().required().trim(),
-        productos: Joi.array().items(
-            Joi.object({
-                number: Joi.number().required().min(1),
-                name: Joi.string().required().trim(),
-                cantidad: Joi.number().required(),
-                categoria: Joi.string().required().valid('Carnes', 'Comidas congeladas', 'Productos lácteos',
-                 'Salsas', 'Confitería', 'Bebidas alcohólicas', 'Bebidas no alcohólicas')        
-            })
-        )
+        gender: Joi.string().required().trim()
     }
     return Joi.validate(usuario, schema);
 }

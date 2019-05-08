@@ -5,7 +5,9 @@ let server;
 
 describe('/api', () => {
 
-    beforeAll(() => { server = require('../../index'); });
+    beforeAll(() => { server = require('../../index');
+    
+    ; });
     afterEach(async () => { 
         await Usuario.deleteMany({});
     });
@@ -13,21 +15,26 @@ describe('/api', () => {
         server.close(); 
         await mongoose.connection.close();
     });
-    
+
+    // NO pasa esta prueba
     /*describe('GET /', () => {
         it('should return all the Usuarios', async () => {
             await Usuario.collection.insertMany([
-                { name: 'user1', email: 'user1@gmail.com', password: 1, gender: 'Male'}
+                { name: 'user1', email: 'user1@gmail.com', password: '1', gender: 'Male'},
+                { name: 'user2', email: 'user2@gmail.com', password: '1', gender: 'Male'},
+                { name: 'user3', email: 'user3@gmail.com', password: '1', gender: 'Male'}
             ]);
             const res = await request(server).get('/api');
             expect(res.status).toBe(200);
-            expect(res.body.length).toBe(1);
+            expect(res.body.length).toBe(3);
             expect(res.body.some(usuario => usuario.email === 'user1@gmail.com')).toBeTruthy();
         });
     });*/
+    
 
     describe('GET /:email', () => {
-        it('should return a Usuario given its email', async () => {
+        it('should return a Usuario given its email', async () => {           
+
             const usuario = new Usuario({
                 name: 'Pepe',
                 email: 'pepe@gmail.com',
@@ -35,6 +42,7 @@ describe('/api', () => {
                 gender: 'Male'
             });
             await usuario.save();
+
             const res = await request(server).get(`/api/${ usuario.email }`);
             expect(res.status).toBe(200);
             expect(res.body).toHaveProperty('email', usuario.email);
@@ -67,39 +75,39 @@ describe('/api', () => {
             expect(res.status).toBe(409);
         });
         
-        /*it('should save the Usuario if valid', async () => {
-            const usuario = new Usuario({
+        it('should save the Usuario if valid', async () => {
+            let usuario = {
                 name: 'Pepe',
                 email: 'pepee@gmail.com',
                 password: '1',
                 gender: 'Male'
-            });
+            };
+
             const res = await request(server)
                 .post('/api/register')
                 .send(usuario);
             usuario = await Usuario.findOne({ email: usuario.email });
             console.log("usuario: " + usuario);
             expect(usuario).not.toBeNull();
-        });*/
+        });
 
-        /*it('should return the Usuario if valid', async () => {
-            const usuario = new Usuario({
+
+        it('should return the Usuario if valid', async () => {
+            let usuario = {
                 name: 'Pepe',
                 email: 'pepe@gmail.com',
                 password: '1',
                 gender: 'Male'
-            });
+            };
+
             const res = await request(server)
                 .post('/api/register')
                 .send(usuario);             
             expect(res.status).toBe(201);
-
-
-            //expect(res.body).toHaveProperty('email', usuario.email);
-        });*/
+            expect(res.body).toHaveProperty('email', usuario.email);
+        });
     });
 
-    
     describe('Delete /:email', () => {
 
         it('should delete a Usuario given its email', async () => {
@@ -111,27 +119,42 @@ describe('/api', () => {
                 password: '1',
                 gender: 'Male'
             });
-            await usuario.save()
-            const res = await request(server).get(`/api/${ usuario.email }`);
+            await usuario.save();
+            const token = usuario.generarAuthToken();
+
+            const res = await request(server)
+                .delete(`/api/${ usuario.email }`)
+                .set('x-auth-token', token);
 
             expect(res.status).toBe(200);
-            //expect(res.body).toHaveProperty('name', pokemon.name);
+            expect(res.body).toHaveProperty('email', usuario.email);
 
         });
 
         it('should return 404 if invalid email is passed (delete)', async () => {
-            const res = await request(server).get(`/api/uno@gmail.com`);
+            const usuario = new Usuario({
+
+                name: 'Luis',
+                email: 'luis@gmail.com',
+                password: '1',
+                gender: 'Male'
+            });
+            await usuario.save();
+            const token = usuario.generarAuthToken();
+
+            const res = await request(server)
+                .delete(`/api/uno@gmail.com`)
+                .set('x-auth-token', token);
+
             expect(res.status).toBe(404);
         });
 
     });
 
     
-
+    
     describe('PUT /:email', () => {
-
         it('should return a Usuario given its email', async () => {
-
             const usuario = new Usuario({
                 name: 'Paco',
                 email: 'paco@gmail.com',
@@ -139,16 +162,37 @@ describe('/api', () => {
                 gender: 'Male'
             });
             await usuario.save();
+            const token = usuario.generarAuthToken();
 
-            const res = await request(server).get(`/api/${ usuario.email }`);
+            let usuario2 = {
+                name: 'Luis',
+                email: 'paco@gmail.com',
+                password: '1',
+                gender: 'Male'
+            };
+
+            const res = await request(server)
+                .put(`/api/${ usuario.email }`)
+                .set('x-auth-token', token)
+                .send(usuario2);
 
             expect(res.status).toBe(200);
-            //expect(res.body).toHaveProperty('name', pokemon.name);
+            expect(res.body).toHaveProperty('email', usuario.email);
 
         });
 
         it('should return 404 if invalid email is passed (put)', async () => {
-            const res = await request(server).get(`/api/jj@gmail.com`);
+            const usuario = new Usuario({
+                name: 'Paco',
+                email: 'paco@gmail.com',
+                password: '1',
+                gender: 'Male'
+            });
+            await usuario.save();
+            const token = usuario.generarAuthToken();
+            const res = await request(server)
+                .get(`/api/jj@gmail.com`)
+                .set('x-auth-token', token);
             expect(res.status).toBe(404);
         });
 
