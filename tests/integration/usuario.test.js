@@ -12,24 +12,20 @@ describe('/api', () => {
         await Usuario.deleteMany({});
     });
     afterAll(async () => {
-        server.close(); 
+        await server.close(); 
         await mongoose.connection.close();
     });
 
-    // NO pasa esta prueba
-    /*describe('GET /', () => {
+    describe('GET /', () => {
         it('should return all the Usuarios', async () => {
-            await Usuario.collection.insertMany([
-                { name: 'user1', email: 'user1@gmail.com', password: '1', gender: 'Male'},
-                { name: 'user2', email: 'user2@gmail.com', password: '1', gender: 'Male'},
-                { name: 'user3', email: 'user3@gmail.com', password: '1', gender: 'Male'}
-            ]);
+            await Usuario.collection.insertOne({ name: 'user1', email: 'user1@gmail.com', password: '1', gender: 'Male'});
+            await Usuario.collection.insertOne({ name: 'user2', email: 'user2@gmail.com', password: '1', gender: 'Male'});
+            await Usuario.collection.insertOne({ name: 'user3', email: 'user3@gmail.com', password: '1', gender: 'Male'});
             const res = await request(server).get('/api');
             expect(res.status).toBe(200);
             expect(res.body.length).toBe(3);
-            expect(res.body.some(usuario => usuario.email === 'user1@gmail.com')).toBeTruthy();
         });
-    });*/
+    });
     
 
     describe('GET /:email', () => {

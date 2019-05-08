@@ -6,13 +6,15 @@ let server;
 
 describe('/api/producto', () => {
 
-    beforeAll(() => { server = require('../../index'); });
+    beforeAll(() => { 
+        server = require('../../index');
+     });
     afterEach(async () => { 
         await Producto.deleteMany({});
         await Usuario.deleteMany({});
     });
     afterAll(async () => {
-        server.close(); 
+        await server.close(); 
         await mongoose.connection.close();
     });
     
@@ -41,7 +43,7 @@ describe('/api/producto', () => {
         });
     });
 
-    describe('GET /:name', async () => {
+    describe('GET /:name', () => {
         it('should return a Producto given its name', async () => {
             const producto = new Producto({
                 name: 'Queso',
@@ -199,8 +201,6 @@ describe('/api/producto', () => {
             expect(res.status).toBe(404);
         });
 
-    });
-
-    
+    });    
 
 });

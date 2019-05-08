@@ -1,14 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { Producto, validateProd, validateProdApi } = require('../models/producto');
 const auth = require('../middleware/authApi');
 const bcrypt = require('bcrypt');
 const { Usuario, validate, validateLogin } = require('../models/usuario');
 
 router.get('/', async (req, res) =>{
-    console.log("entro!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
     const usuario  = await Usuario.find();
-    console.log("usuarios: " + usuario);
     res.send(usuario);
 });
 
