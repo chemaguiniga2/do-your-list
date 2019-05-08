@@ -91,11 +91,11 @@
     </nav>
         <div class="container" style="background-color: #e3f2fd; padding: 100px;">
                 <h1>Agregar Productos</h1>
-                <form style="padding-top: 40px;" action="/productos/lista" method="POST">
+                <form style="padding-top: 40px;" action="/editar/<%= producto._id %>" method="POST">
                     <div class="form-group">
                         <label for="categoria">Categoria</label>
                         <select id="categoria" class="form-control" name="categoria">
-                          <option>Choose...</option>
+                          <option><%= producto.categoria %></option>
                           <option value="Lácteos">Lacteos</option>
                           <option value="Carnes y Pescados">Carnes</option>
                           <option value="Despensa">Despensa</option>
@@ -105,26 +105,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="name">Categoria</label>
-                        <select disabled id="name" class="form-control" name="name">
-                          <option>Choose...</option>
-                          <option value="leche" class="Lácteos" hidden = true>Leche</option>
-                          <option value="crema" class="Lácteos" hidden = true>Crema</option>
-                          <option value="mantequilla" class="Lácteos" hidden = true>mantequilla</option>
-                          <option value="bistec" class = "Carnes y Pescados" hidden = true>Bistec</option>
-                          <option value="milanesa" class="Carnes y Pescados" hidden = true>Milanesa</option>
-                          <option value="pechuga" class="Carnes y Pescados" hidden = true>Pechuga</option>
-                          <option value="pollo" class="Carnes y Pescados" hidden = true>Pollo Entero</option>
-                          <option value="harina" class="Panadería y Tortillería" hidden = true>Harina</option>
-                          <option value="azucar" class="Panadería y Tortillería" hidden = true>Azucar</option>
-                          <option value="pan" class="Panadería y Tortillería" hidden = true>Pan</option>
-                          <option value="knorr" class = "Despensa" hidden = true>Knorr Suiza</option>
-                          <option value="sal" class="Despensa" hidden = true>Sal</option>
-                          <option value="shampoo" class="Higiene y Belleza" hidden = true>Shampoo</option>
-                          <option value="jabon" class="Higiene y Belleza" hidden = true>Jabón</option>
-                          <option value="agua" class="Jugos y Bebidas" hidden = true>Agua</option>
-                          
-                        </select>                      
+                        <label for="name">Producto</label> <br>
+                        <input type="text" name="name" placeholder="<%= producto.name %>">                     
                     </div>
                     <div class="form-group">
                       <input type="number" name="cantidad" step="1">
@@ -139,36 +121,7 @@
                 </form>
                 
 
-                <script>
-                 $("#categoria").on("change", function() {
-                   $('#name').removeAttr("disabled");
-                   //alert( $("#categoria").val() );
-                   //$('.lacteos').attr("hidden", true);
-                   switch($("#categoria").val()){
-                     case "Lácteos":
-                     $('.Lácteos').attr("hidden", false);
-                     break;
-                     case "Carnes y Pescados":
-                     $('.Carnes y Pescados').attr("hidden", false);
-                     break;
-                     case "Panadería y Tortillería":
-                     $('.Panadería y Tortillería').attr("hidden", false);
-                     break;
-                     case "Panadería y Tortillería":
-                     $('.Panadería y Tortillería').attr("hidden", false);
-                     break;
-                     case "Despensa":
-                     $('.Despensa').attr("hidden", false);
-                     break;
-                     case "Despensa":
-                     $('.Despensa').attr("hidden", false);
-                     break;
-                     case "Jugos y Bebidas":
-                     $('.Jugos y Bebidas').attr("hidden", false);
-                     break;
-                   }
-                 });
-                </script>
+                
         
             </div>
 </body>
