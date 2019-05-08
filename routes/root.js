@@ -101,38 +101,6 @@ router.post('/register', passport
 
 router.get('/mi_lista', auth, async (req, res) => {
     let usuario = req.user;
-    /*(async () => {
-        let url = 'https://super.walmart.com.mx/quesos/queso-tipo-chihuahua-arla-400-g/00571195304732';
-    
-        let browser = await puppeteer.launch();
-        let page = await browser.newPage();
-    
-        await page.goto(url, {waitUntil: 'networkidle2'});
-        
-        let data = await page.evaluate(() => {
-            let titulo = document.querySelector('#root > div > div > main > div.ez6st4XksKUGZfGdvIhjV > section > div:nth-child(1) > div._1mp6DRSv6MS2tqc65wTjwJ > div.vQMIKtScxt-0gP4BIwEhI > span > h1').innerText;
-            let precio = document.querySelector('#root > div > div > main > div.ez6st4XksKUGZfGdvIhjV > section > div:nth-child(1) > div._1mp6DRSv6MS2tqc65wTjwJ > div.vQMIKtScxt-0gP4BIwEhI > div.FVpRm-ZwHtHVwahtm--xo > h4').innerText;
-    
-            return {
-                titulo, 
-                precio
-            }
-    
-        });
-    
-        console.log(data);
-        let producto = new prodScrap({
-            name: data.titulo,
-            categoria: 'Lácteos',
-            precio: data.precio
-    
-        });
-    
-        await producto.save();
-    
-        await browser.close();
-    
-    })();*/
     res.render('agregar_productos', {usuario});
 });
 

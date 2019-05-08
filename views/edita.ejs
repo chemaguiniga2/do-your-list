@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Welcome to Do-Your-List.com
+  </title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Damion|Muli:400,600');
+    h1{
+      font-family: 'Rubik', sans-serif;
+      color: black;
+      text-align: center;
+    }
+    #myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    }
+
+    .content {
+    position: relative;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    }
+
+    :focus{outline: none;}
+
+    /* necessary to give position: relative to parent. */
+    input[type="text"]{font: 15px/24px 'Muli', sans-serif; color: #ffffff; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+    input[type="password"]{font: 15px/24px 'Muli', sans-serif; color: #ffffff; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+    form{text-align: -webkit-center;}
+    .form-control{width: 24%;}
+    .form-gr{padding-left: 10px;}
+    :focus{outline: none;}
+
+    .col-3{width: 27.33%; position: relative;} /* necessary to give position: relative to parent. */
+    input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #ffffff; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+
+    
+    
+    .effect-16, 
+    .effect-17, 
+    .effect-18{border: 0; padding: 4px 0; border-bottom: 1px solid #ccc; background-color: transparent;}
+
+    .effect-16 ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #ffffff; transition: 0.4s;}
+    .effect-16:focus ~ .focus-border,
+    .has-content.effect-16 ~ .focus-border{width: 100%; transition: 0.4s;}
+    .effect-16 ~ label{position: absolute; left: 0; width: 100%; top: 9px; color: #aaa; transition: 0.3s; z-index: -1; letter-spacing: 0.5px;}
+    .effect-16:focus ~ label, .has-content.effect-16 ~ label{top: -16px; font-size: 12px; color: #ffffff; transition: 0.3s;}
+
+    
+    .has-content.effect-18 ~ .focus-border:before,
+    .has-content.effect-18 ~ .focus-border:after{width: 50%; transition: 0.4s;}
+    
+    .button {
+      text-align: center;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-size: 20px;
+      letter-spacing: 4px;
+      position: relative;
+      background-color: #16a085;
+      border: none;
+      color: #fff;
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+      transition-duration: 0.4s;
+      overflow: hidden;
+      box-shadow: 0 5px 15px #193047;
+      border-radius: 4px;
+    }
+
+    .button:hover {
+      background: #fff;
+      box-shadow: 0px 2px 10px 5px #1abc9c;
+      color: #000;
+    }
+
+    .button:after {
+      content: "";
+      background: #1abc9c;
+      display: block;
+      position: absolute;
+      padding-top: 300%;
+      padding-left: 350%;
+      margin-left: -20px !important;
+      margin-top: -120%;
+      opacity: 0;
+      transition: all 0.8s
+    }
+
+    .button:active:after {
+      padding: 0;
+      margin: 0;
+      opacity: 1;
+      transition: 0s
+    }
+
+    .button:focus { outline:0; }
+  </style>
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="/beach.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="container content" style=" padding: 100px;">
+      <h1>Do-Your-List.com</h1>
+      <form style="padding-top: 40px;" action="/register" method="POST">
+          <div class="form-group">
+              <div class="col-3 input-effect">
+                <label for="name">Enter name</label>
+                <input class="effect-16" type="text" placeholder="Name" id="name" name="name">
+                <span class="focus-border"></span>
+              </div>
+          </div>
+          <br>
+          <div class="form-group">
+              <div class="col-3 input-effect">
+                  <label for="email">Enter Email</label>
+                  <input class="effect-16" type="text" placeholder="Email" id="email" name="email">
+                  <span class="focus-border"></span>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="col-3 input-effect">
+                  <label for="email">Enter Password</label>
+                  <input class="effect-16" type="password" placeholder="Password" id="password" name="password">
+                  <span class="focus-border"></span>
+              </div>
+          </div>
+          <div class="form-group form-gr">
+              <label for="inputState">Gender</label>
+              <select id="inputState" class="form-control" name="gender">
+                <option selected>Choose...</option>
+                <option>Female</option>
+                <option>Male</option>
+              </select>
+          </div>
+          <div class="form-group form-check form-gr">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          
+          <button type="submit" class="button">Register</button>
+      </form>
+
+  </div>
+</body>
+
+</html>
